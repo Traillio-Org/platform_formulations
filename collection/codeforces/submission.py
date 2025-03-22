@@ -23,7 +23,7 @@ def get_user_acceptance(handle="Nkca122", count=20):
         accepted_submissions = sum(True for sub in res_json.get("result", []) if sub["verdict"] == "OK")
 
         return round((accepted_submissions / total_submissions) * 100, 2) if total_submissions else 0
-    except requests.exceptions.RequestException as err:
+    except req.exceptions.RequestException as err:
         handle_request_error(err)
     
     return None

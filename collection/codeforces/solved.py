@@ -30,13 +30,14 @@ def get_user_solved(handle="Nkca122"):
         for submission in res_json.get("result", []):
             if submission["verdict"] == "OK" and "problem" in submission:
                 problem = submission["problem"]
-                problem_id = f"{problem['contestId']}-{problem['index']}"
-                difficulty = problem.get("rating", None)
+                if "contestId" in problem and "index" in problem:
+                    problem_id = f"{problem['contestId']}-{problem['index']}"
+                    difficulty = problem.get("rating", None)
 
-                if difficulty:
-                    for category, (low, high) in difficulty_ranges.items():
-                        if low <= difficulty < high:
-                            solved_problems.setdefault(category, set()).add(problem_id)
+                    if difficulty:
+                        for category, (low, high) in difficulty_ranges.items():
+                            if low <= difficulty < high:
+                                solved_problems.setdefault(category, set()).add(problem_id)
 
         return (
             len(solved_problems.get("Easy", set())),
@@ -47,4 +48,4 @@ def get_user_solved(handle="Nkca122"):
     except req.exceptions.RequestException as err:
         handle_request_error(err)
 
-    return None
+    return None, None, None

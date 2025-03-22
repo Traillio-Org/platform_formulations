@@ -18,7 +18,7 @@ def get_user_acceptance(handle="nkca122", count=20):
                 for submission in submissions
                 if submission["statusDisplay"]
                 == "Accepted"
-            ) / res_json.get("count", None)*100, 2)
+            ) / res_json.get("count", None)*100, 2) if res_json.get("count", None) else 0
         else:
             return None
     except req.exceptions.RequestException as err:

@@ -30,7 +30,7 @@ def get_user_weekly_submissions(handle):
 
         return len(solved_problems)
 
-    except requests.exceptions.RequestException as err:
+    except req.exceptions.RequestException as err:
         handle_request_error(err)
 
     return None

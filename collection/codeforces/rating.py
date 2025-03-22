@@ -19,6 +19,6 @@ def get_user_rating(handle="Nkca122"):
             return res_json["result"][0].get("rating", None)
         else:
             return None
-    except requests.exceptions.RequestException as err:
+    except req.exceptions.RequestException as err:
        handle_request_error(err)
     return None
