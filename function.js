@@ -8,7 +8,7 @@ function score_CF(rating, easy, medium, hard, acceptance, weekly) {
       (acceptance / 100) * 50 +
       (weekly / 50) * 85 +
       2450) /
-    500
+    50
   );
 }
 
